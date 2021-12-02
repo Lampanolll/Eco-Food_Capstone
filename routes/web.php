@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\UserController;
-use App\Http\Controllers\Admineco\AdminecoController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Wastecomp\WastecompController;
 
 /*
@@ -46,16 +46,16 @@ Route::prefix('user')->name('user.')->group(function(){
 
 });
 
-Route::prefix('admineco')->name('admineco.')->group(function(){
+Route::prefix('admin')->name('admin.')->group(function(){
        
-    Route::middleware(['guest:admineco','PreventBackHistory'])->group(function(){
-          Route::view('/login','dashboard.admineco.login')->name('login');
-          Route::post('/check',[AdminecoController::class,'check'])->name('check');
+    Route::middleware(['guest:admin','PreventBackHistory'])->group(function(){
+          Route::view('/login','dashboard.admin.login')->name('login');
+          Route::post('/check',[AdminController::class,'check'])->name('check');
     });
 
-    Route::middleware(['auth:admineco','PreventBackHistory'])->group(function(){
-        Route::view('/home','dashboard.admineco.home')->name('home');
-        Route::post('/logout',[AdminecoController::class,'logout'])->name('logout');
+    Route::middleware(['auth:admin','PreventBackHistory'])->group(function(){
+        Route::view('/home','dashboard.admin.home')->name('home');
+        Route::post('/logout',[AdminController::class,'logout'])->name('logout');
     });
 
 });
